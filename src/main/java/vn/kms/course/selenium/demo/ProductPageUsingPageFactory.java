@@ -11,16 +11,16 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class ProductPageUsingPageFactory {
     WebDriver driver ;
 
-    @FindBy(id = "headlessui-label-:r2:")
+    @FindBy(xpath = "//div[@role='radiogroup']//div[@role='radio' and position()=1]")
     WebElement option1;
 
-    @FindBy(id = "headlessui-label-:r4:")
+    @FindBy(xpath = "//div[@role='radiogroup']//div[@role='radio' and position()=2]")
     WebElement option2;
 //  //div[starts-with(@id, 'headlessui-radiogroup-:')]/div/div[1]
     @FindBy(xpath = "//button[@data-testid = 'addToCartButton']")
     WebElement addToCartBtn;
 
-    @FindBy(xpath = "//h1[@data-testid='productName']")
+    @FindBy(xpath = "//a[starts-with(@data-testid, 'cartProductItem')]")
     WebElement productName;
 
     @FindBy(xpath = "//div[starts-with(@id, 'headlessui-radiogroup-:')]/div/div[1]/div/div/div/div/following-sibling::div")
@@ -37,7 +37,7 @@ public class ProductPageUsingPageFactory {
     public float chooseOption(int choice){
         if (choice == 1){
             WebDriverWait wait = new WebDriverWait(this.driver, 30);
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("headlessui-label-:r2:")));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='radiogroup']//div[@role='radio' and position()=1]")));
             option1.click();
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@data-testid = 'addToCartButton']")));
             addToCartBtn.click();
@@ -45,7 +45,7 @@ public class ProductPageUsingPageFactory {
         }
         if (choice == 2){
             WebDriverWait wait = new WebDriverWait(this.driver, 30);
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("headlessui-label-:r4:")));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='radiogroup']//div[@role='radio' and position()=2]")));
             option2.click();
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@data-testid = 'addToCartButton']")));
             addToCartBtn.click();
@@ -56,7 +56,7 @@ public class ProductPageUsingPageFactory {
 
     public String getProductName(){
         WebDriverWait wait = new WebDriverWait(this.driver, 30);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h1[@data-testid='productName']")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[starts-with(@data-testid, 'cartProductItem')]")));
         return productName.getText();
     }
 

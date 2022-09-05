@@ -4,11 +4,13 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import vn.kms.course.selenium.bases.BasePage;
 import vn.kms.course.selenium.bases.BaseTest;
@@ -29,53 +31,44 @@ public class DemoPOMTest extends BaseTest {
 
     }
 
-    @AfterEach
-    public void afterEach() {
-        driver.quit();
-    }
-
-//    @Test
-//    public void loginSuccessfullyPageFactory(){
-//
-//        HomePageUsingPageFactory homePage = new HomePageUsingPageFactory(driver);
-//        homePage.LoginNavigate();
-//
-//        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-//        LoginPageUsingPageFactory loginPage = new LoginPageUsingPageFactory(driver);
-//        String email = "admin@example.com";
-//        String password = "admin";
-//        loginPage.login(email, password);
-//
-//        try {
-//            Thread.sleep(5000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//
-//        // Success Login
-//        String URL = driver.getCurrentUrl();
-//        System.out.println("Check if Log In successfully ...");
-//        Assertions.assertEquals("https://demo.saleor.io/default-channel/en-US", URL);
-//        System.out.println("1/3 Passed");
-//        Assertions.assertEquals("Account preferences", homePage.getAccountButtonText());
-//        System.out.println("2/3 Passed");
-//        Assertions.assertEquals("Log out", homePage.getLogoutButtonText());
-//        System.out.println("3/3 Passed");
-//
-//        try {
-//            Thread.sleep(5000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//
-//        homePage.Logout();
-//        // Success Logout
-//        URL = driver.getCurrentUrl();
-//        System.out.println("Check if Log Out successfully ...");
-//        Assertions.assertEquals("https://demo.saleor.io/default-channel/en-US", URL);
-//        System.out.println("1/3 Passed");
-//
+//    @AfterEach
+//    public void afterEach() {
+//        driver.quit();
 //    }
+
+    @Test
+    public void loginSuccessfullyPageFactory(){
+
+        HomePageUsingPageFactory homePage = new HomePageUsingPageFactory(driver);
+        homePage.LoginNavigate();
+
+        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        LoginPageUsingPageFactory loginPage = new LoginPageUsingPageFactory(driver);
+        String email = "admin@example.com";
+        String password = "admin";
+        loginPage.login(email, password);
+
+//        try {
+//            Thread.sleep(5000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+
+
+        WebDriverWait wait = new WebDriverWait(this.driver, 30);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[starts-with(@class, 'Navbar_user-menu-container')]")));
+
+        // Success Login
+        String URL = driver.getCurrentUrl();
+        System.out.println("Check if Log In successfully ...");
+        Assertions.assertEquals("https://demo.saleor.io/default-channel/en-US/", URL);
+        System.out.println("1/3 Passed");
+        Assertions.assertEquals("Account preferences", homePage.getAccountButtonText());
+        System.out.println("2/3 Passed");
+        Assertions.assertEquals("Log out", homePage.getLogoutButtonText());
+        System.out.println("3/3 Passed");
+
+    }
     @Test
     public void ValidateAddtoCart(){
         HomePageUsingPageFactory homepage = new HomePageUsingPageFactory(driver);

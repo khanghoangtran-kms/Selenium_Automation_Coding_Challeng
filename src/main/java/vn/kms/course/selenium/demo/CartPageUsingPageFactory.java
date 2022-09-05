@@ -21,7 +21,7 @@ public class CartPageUsingPageFactory {
     @FindBy(xpath = "//div[@class= 'ml-8 flex-1 flex flex-col justify-center']/div/div/div/h3")
     WebElement productName;
 
-    @FindBy(xpath = "//button[@type='button' and @class='Navbar_nav-icon-button__U7uSf' and @aria-hidden='true']")
+    @FindBy(xpath = "//div[starts-with(@class, 'Navbar_inner')]/div[3]/a[2]")
     WebElement cartBtn;
 
     public CartPageUsingPageFactory(WebDriver webdriver){
@@ -54,7 +54,7 @@ public class CartPageUsingPageFactory {
 
     public void cartNavigate(){
         WebDriverWait wait = new WebDriverWait(this.driver, 30);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@type='button' and @class='Navbar_nav-icon-button__U7uSf' and @aria-hidden='true']")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[starts-with(@class, 'Navbar_inner')]/div[3]/a[2]")));
         cartBtn.click();
     }
 }
