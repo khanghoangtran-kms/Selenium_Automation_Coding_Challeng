@@ -29,12 +29,10 @@ public class DemoPOMTest extends BaseTest {
 
     }
 
-//    @AfterEach
-//    public void afterEach() {
-//        driver.quit();
-//    }
-
-
+    @AfterEach
+    public void afterEach() {
+        driver.quit();
+    }
 
 //    @Test
 //    public void loginSuccessfullyPageFactory(){
@@ -82,52 +80,55 @@ public class DemoPOMTest extends BaseTest {
     public void ValidateAddtoCart(){
         HomePageUsingPageFactory homepage = new HomePageUsingPageFactory(driver);
 
-        try {
-            Thread.sleep(8000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
+//        try {
+//            Thread.sleep(8000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//        this.driver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
         homepage.ClickAnItem();
 
-        try {
-            Thread.sleep(8000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Thread.sleep(8000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//        this.driver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
 
         ProductPageUsingPageFactory productpage = new ProductPageUsingPageFactory(driver);
         double productCost = productpage.chooseOption(2);
         productpage.addToCart();
         String productName = productpage.getProductName();
 
-        try {
-            Thread.sleep(8000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Thread.sleep(8000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//        this.driver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
 
         CartPageUsingPageFactory cartpage = new CartPageUsingPageFactory(driver);
         Integer quantity = 12;
         cartpage.changeProductQuantity(quantity);
         Integer productQuantity = cartpage.getProductQuantity();
 
-
         driver.get("https://demo.saleor.io/default-channel/en-US");
 
-        try {
-            Thread.sleep(8000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Thread.sleep(8000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//        this.driver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
 
         cartpage.cartNavigate();
 
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Thread.sleep(2000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+        this.driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 
         Assertions.assertEquals(cartpage.getProductName(), productName);
         System.out.println("1/3 Passed");

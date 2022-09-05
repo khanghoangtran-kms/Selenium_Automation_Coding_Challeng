@@ -1,10 +1,13 @@
 package vn.kms.course.selenium.demo;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class HomePageUsingPageFactory {
     @FindBy(xpath = "//button[@class = 'Navbar_nav-icon-button__U7uSf' and @aria-hidden = 'true']")
@@ -57,6 +60,8 @@ public class HomePageUsingPageFactory {
     }
 
     public void ClickAnItem(){
+        WebDriverWait wait = new WebDriverWait(this.driver, 30);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@data-testid = 'productsList']/li[@class = 'w-full' and position() = 1]")));
         productItem.click();
     }
 }
