@@ -123,6 +123,7 @@ public class DemoPOMTest extends BaseTest {
 //        }
         this.driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 
+        System.out.println("Check if Add-to-cart function works ...");
         Assertions.assertEquals(cartpage.getProductName(), productName);
         System.out.println("1/3 Passed");
         Assertions.assertEquals(cartpage.getProductQuantity(), productQuantity);
